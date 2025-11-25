@@ -1,0 +1,98 @@
+🧩 SisUno — Documento Técnico v0.3
+🔖 Versão
+
+v0.3 — Módulo de Prontuário do Cliente
+Data: 04/11/2025
+Autor: Equipe SisUno
+Base anterior: v0.2 (Banco de Dados Revisado com múltiplos papéis CLIENTE/FORNECEDOR)
+
+🧭 1. Objetivo da versão
+
+Adicionar o módulo de prontuário, que cria e organiza automaticamente a estrutura documental de cada cliente dentro do sistema.
+Esse módulo permite vincular orçamentos, fotos, documentos, projetos e arquivos de modelagem (ex: SketchUp) a um cliente de forma centralizada.
+
+🧱 2. Estrutura Técnica
+2.1 Diretórios criados automaticamente
+
+Cada novo cliente recebe uma pasta gerada a partir do nome e data atual:
+
+H:\SisUno\Clientes\<NOME>_<DATA>\
+├── documentos\
+├── fotos\
+├── orcamentos\
+└── sketchup\
+
+
+Exemplo:
+
+H:\SisUno\Clientes\João_Silva_2025-11-04\
+
+2.2 Banco de Dados
+Tabela principal envolvida:
+
+pessoas
+
+CREATE TABLE pessoas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tipo TEXT CHECK(tipo IN ('FISICA', 'JURIDICA')) NOT NULL,
+    nome TEXT NOT NULL,
+    documento TEXT,
+    telefone TEXT,
+    email TEXT,
+    endereco TEXT,
+    cidade TEXT,
+    uf TEXT,
+    papeis TEXT CHECK(papeis IN ('CLIENTE', 'FORNECEDOR', 'AMBOS')) DEFAULT 'CLIENTE',
+    observacoes TEXT,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+Nova Tabela:
+
+prontuarios
+
+CREATE TABLE prontuarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cliente_id INTEGER NOT NULL,
+    codigo TEXT UNIQUE NOT NULL,
+    descricao TEXT,
+    caminho TEXT NOT NULL,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cliente_id) REFERENCES pessoas(id)
+);
+
+⚙️ 3. Script implementado
+
+Arquivo:
+src/backend/add_prontuario.py
+
+Funções principais:
+
+Leitura do cliente no banco (pessoas)
+
+Criação automática das pastas na estrutura H:\SisUno\
+
+Geração do código de prontuário (PRT-<ID>-<timestamp>)
+
+Registro do prontuário no banco SQLite
+
+🧪 4. Teste e Validação
+Passos realizados:
+
+Inserido cliente de teste:
+
+João Silva
+
+
+Executado script:
+
+python add_prontuario.py
+
+
+Resultado:
+
+✅ Prontuário criado com sucesso!
+📁 H:\SisUno\Clientes\João_Silva_2025-11-04
+
+
+Confirmação visual: pastas criadas conforme esperado

@@ -1,0 +1,69 @@
+💡 Conteúdo completo do arquivo guia_usabilidade_SisUno.md
+# 💡 Guia de Usabilidade – Projeto SisUno
+
+## 🎯 Objetivo
+Garantir que o SisUno seja acessível e fácil de aprender, mesmo para usuários com pouca experiência em informática.
+
+---
+
+## 🧭 Princípios de Usabilidade
+
+### 1. Simplicidade
+Cada tela deve mostrar apenas o essencial.  
+Menus curtos, botões claros e nomes compreensíveis.  
+Exemplo: usar “Novo Orçamento” em vez de “Criar Registro”.
+
+### 2. Fluxo Natural
+O usuário percorre o sistema como percorre o trabalho real:
+
+
+Cliente → Orçamento → Execução → Financeiro → Relatórios
+
+
+### 3. Aprendizado Guiado
+O sistema deve ajudar o usuário com:
+- Dicas automáticas nas telas.  
+- Mensagens explicativas ao lado dos campos.  
+- Exemplos de orçamentos fictícios para treino.
+
+### 4. Retorno Visual
+Sempre mostrar o que aconteceu:
+- 🟩 Verde → Sucesso  
+- 🟨 Amarelo → Atenção  
+- 🟥 Vermelho → Erro  
+
+### 5. Flexibilidade
+Usuários experientes poderão desativar assistentes ou atalhos, mantendo o sistema ágil.
+
+---
+
+## 🧱 Estrutura Visual Recomendada
+- Layout limpo, tons neutros e ícones intuitivos.  
+- Painel lateral com seções principais.  
+- Cabeçalho com status atual (usuário, data, versão).  
+- Botão principal sempre destacado (ex: “Salvar”, “Confirmar”).
+
+---
+
+## 🔎 Acessibilidade
+- Fontes legíveis e de bom contraste.  
+- Suporte a teclado e mouse.  
+- Mensagens simples e em português direto.
+
+---
+
+## 💬 Linguagem de Interface
+Evitar termos técnicos.  
+Usar frases curtas e humanas:
+- “Deseja salvar este orçamento?”  
+- “Cadastro concluído com sucesso!”  
+- “Preencha o valor antes de continuar.”
+
+---
+
+## 🧠 Filosofia
+> O sistema deve ensinar o usuário, não o contrário.
+
+---
+
+📄 **Documento gerado automaticamente — versão 1.0 (base de usabilidade)**

@@ -1,0 +1,146 @@
+🧾 Documento Técnico — Definição de Versão SisUno v0.7
+
+Projeto: Sistema de Gestão Integrado SisUno
+Fase: Módulo de Geração de Orçamentos em PDF
+Data: 06/11/2025
+Responsável: Restaurador Officina
+
+🔹 1. Objetivo Geral
+
+Implementar a geração automática de orçamentos em PDF, vinculada ao prontuário de cada cliente.
+O sistema deve permitir que um orçamento aprovado ou em elaboração seja exportado para PDF formatado, contendo todas as informações relevantes: cliente, prontuário, itens, valores e observações.
+
+🔹 2. Estrutura de Geração
+🧩 Entrada de dados (via banco)
+
+O script extrai as informações de:
+
+Cliente: nome, tipo, contatos.
+
+Prontuário: código, descrição e pasta associada.
+
+Orçamento: código, status, total e data.
+
+Itens: descrição, tipo, quantidade, valor unitário e total.
+
+📤 Saída esperada
+
+Arquivo PDF gerado no formato:
+
+H:\SisUno\Clientes\<Nome_Cliente>\Orcamentos\<Codigo_Orcamento>.pdf
+
+
+Exemplo:
+
+H:\SisUno\Clientes\João_Silva_2025-11-05\Orcamentos\ORC-1762388821.pdf
+
+🔹 3. Estrutura de Layout do PDF
+📄 Cabeçalho
+
+Logotipo (se disponível)
+
+Nome do sistema: SisUno
+
+Título: Orçamento de Serviços / Produtos
+
+Código do orçamento e data de emissão
+
+👤 Dados do Cliente
+Campo	Descrição
+Nome / Razão Social	Nome completo do cliente
+Tipo	Pessoa física ou jurídica
+Contato	Telefone / E-mail
+Endereço	Endereço completo (se disponível)
+📁 Dados do Prontuário
+Campo	Descrição
+Código	Ex: PRT-1-20251105204809
+Descrição	Ex: "Restauração de cristaleira antiga"
+Data de criação	Automática (campo criado_em)
+💰 Itens do Orçamento
+
+Tabela com colunas:
+
+Tipo	Descrição	Qtd	Valor Unitário	Total
+SERVIÇO	Restauração de cristaleira	1	450.00	450.00
+INSUMO	Verniz Premium	2	85.50	171.00
+
+Subtotal: R$ 621.00
+
+🧾 Rodapé
+
+Condições comerciais (texto fixo personalizável).
+
+Espaço para assinatura ou carimbo.
+
+Rodapé com:
+
+Sistema de Gestão SisUno © 2025 - Gerado automaticamente em <data e hora>
+
+🔹 4. Estrutura Técnica
+🛠️ Script principal
+
+Arquivo:
+
+src/backend/gerar_orcamento_pdf.py
+
+🧰 Bibliotecas
+
+reportlab — geração e formatação de PDFs.
+
+sqlite3 — extração dos dados do banco.
+
+os — manipulação de diretórios.
+
+datetime — data/hora de geração.
+
+🧱 Campos adicionais no banco
+
+Será adicionada uma nova coluna à tabela orcamentos:
+
+ALTER TABLE orcamentos ADD COLUMN arquivo_pdf TEXT;
+
+
+Para armazenar o caminho completo do arquivo gerado.
+
+🔹 5. Fluxo de Geração
+[Selecionar orçamento]
+        ↓
+[Ler dados do banco]
+        ↓
+[Montar documento PDF com ReportLab]
+        ↓
+[Gerar diretório Orcamentos no prontuário, se não existir]
+        ↓
+[Salvar PDF e registrar caminho no banco]
+        ↓
+[Confirmar sucesso no terminal]
+
+🔹 6. Exemplo de saída no terminal
+📄 Geração de Orçamento - SisUno v0.7
+=====================================
+✅ Dados carregados: ORC-1762388821
+👤 Cliente: João Silva
+📁 Prontuário: PRT-1-20251105204809
+💰 Total: R$ 621.00
+📂 PDF salvo em: H:\SisUno\Clientes\João_Silva_2025-11-05\Orcamentos\ORC-1762388821.pdf
+=====================================
+✅ Orçamento exportado com sucesso!
+
+🔹 7. Próximos arquivos a gerar
+Arquivo	Localização	Função
+gerar_orcamento_pdf.py	src/backend/	Script principal de geração
+update_orcamentos_v07.sql	database/	Adiciona coluna arquivo_pdf
+test_pdf_v07.py	database/	Testa criação e salvamento do PDF
+🔹 8. Requisitos mínimos
+
+Python 3.12+
+
+Biblioteca reportlab instalada:
+
+pip install reportlab
+
+
+Permissão de gravação na pasta H:\SisUno\Clientes\
+
+🔹 9. Armazenamento sugerido
+H:\Reserva\Pessoal\Sistema vendas e orçamento\SisUno_Base_v0.1\docs\SisUno_v0.7_Documento_Tecnico.md

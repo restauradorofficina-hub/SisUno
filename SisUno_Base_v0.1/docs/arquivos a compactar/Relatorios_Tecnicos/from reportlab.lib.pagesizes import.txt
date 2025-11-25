@@ -1,0 +1,136 @@
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from datetime import datetime
+import hashlib
+import os
+
+# ==============================
+# 📄 Configurações iniciais
+# ==============================
+output_dir = r"H:\Reserva\Pessoal\Sistema vendas e orçamento\SisUno_Base_v0.1\docs\Relatorios_Tecnicos"
+output_path = os.path.join(output_dir, "Relatorio_Tecnico_SisUno_v1.2.pdf")
+log_file = os.path.join(output_dir, "sisuno_version_log.txt")
+
+# ==============================
+# 🧩 Conteúdo principal
+# ==============================
+report_text = """
+========================================
+RELATÓRIO TÉCNICO CONSOLIDADO
+SISUNO – VERSÃO 1.2
+========================================
+📅 Data de emissão: {data}
+🧑‍💻 Responsável técnico: Officina – Desenvolvimento interno
+📁 Caminho de arquivamento:
+{path}
+========================================
+
+1️⃣ OBJETIVO DA VERSÃO
+----------------------------------------
+Consolidar a integração entre os módulos de:
+- Orçamentos
+- Financeiro
+- Pacotes de orçamentos
+- Controle de faturas de cartão
+
+A versão 1.2 visa permitir o agrupamento de orçamentos individuais de um mesmo cliente
+em um pacote consolidado, além de registrar despesas parceladas em cartões e associá-las
+a faturas para melhor gestão financeira.
+
+----------------------------------------
+2️⃣ ESTRUTURA DO BANCO DE DADOS
+----------------------------------------
+
+Tabelas criadas:
+- pacote_orcamento
+- pacote_orcamento_itens
+- cartao_fatura
+- cartao_fatura_itens
+
+Views atualizadas:
+- vw_orcamentos_com_custos
+- vw_faturas_cartao_resumo
+
+----------------------------------------
+3️⃣ DESCRIÇÃO FUNCIONAL
+----------------------------------------
+
+🧩 PACOTE DE ORÇAMENTOS
+Permite agrupar múltiplos orçamentos de um mesmo cliente sob um código de pacote.
+
+💳 CONTROLE DE FATURAS DE CARTÃO
+Registra despesas realizadas via cartão de crédito e gera faturas mensais consolidadas.
+
+🧾 VIEW vw_orcamentos_com_custos
+Consolida dados de orçamentos com custos operacionais e de deslocamento.
+
+📊 VIEW vw_faturas_cartao_resumo
+Exibe um resumo das faturas com valores totais, pagos e pendentes.
+
+----------------------------------------
+4️⃣ RESULTADOS DE TESTES
+----------------------------------------
+✅ Pacote de orçamento criado com sucesso.
+✅ Fatura e itens de cartão criados e validados.
+✅ Views atualizadas funcionando corretamente após correção.
+🏁 Status geral: Teste concluído com sucesso.
+
+----------------------------------------
+5️⃣ ANÁLISE DE INTEGRAÇÃO
+----------------------------------------
+As views refletem corretamente as relações entre orçamentos, custos e financeiro.
+O módulo de pacotes permite emissão de relatórios consolidados para negociação com o cliente.
+
+----------------------------------------
+6️⃣ INSTRUÇÕES DE ARQUIVAMENTO
+----------------------------------------
+📂 Diretório padrão:
+H:\\Reserva\\Pessoal\\Sistema vendas e orçamento\\SisUno_Base_v0.1\\docs\\Relatorios_Tecnicos\\
+📄 Nome do arquivo:
+Relatorio_Tecnico_SisUno_v1.2.pdf
+
+----------------------------------------
+🔖 Observações:
+Esta versão marca o início da integração financeira completa do sistema.
+========================================
+"""
+
+# ==============================
+# 🧾 Criação do relatório PDF
+# ==============================
+styles = getSampleStyleSheet()
+doc = SimpleDocTemplate(output_path, pagesize=A4)
+content = [
+    Paragraph("RELATÓRIO TÉCNICO CONSOLIDADO - SISUNO v1.2", styles["Title"]),
+    Spacer(1, 12),
+    Paragraph(report_text.format(data=datetime.now().strftime("%Y-%m-%d %H:%M"), path=output_path), styles["BodyText"]),
+    Spacer(1, 12)
+]
+
+# Assinatura digital automática
+timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+sign_data = f"SisUno_v1.2_{timestamp}".encode()
+signature = hashlib.sha256(sign_data).hexdigest()
+
+content.append(Spacer(1, 12))
+content.append(Paragraph(f"🔐 Assinatura Digital: {signature}", styles["BodyText"]))
+content.append(Paragraph(f"🕒 Gerado em: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}", styles["BodyText"]))
+
+doc.build(content)
+
+# ==============================
+# 🪶 Registro no log de versões
+# ==============================
+with open(log_file, "a", encoding="utf-8") as f:
+    f.write(f"\n=== SISUNO v1.2 ===\n")
+    f.write(f"Data: {datetime.now()}\n")
+    f.write(f"Arquivo: {output_path}\n")
+    f.write(f"Assinatura: {signature}\n")
+    f.write(f"Descrição: Consolidação financeira e de pacotes de orçamento.\n")
+    f.write("="*50 + "\n")
+
+print("✅ Relatório técnico v1.2 gerado e assinado com sucesso!")
+print(f"📂 Caminho: {output_path}")
+print(f"🔐 Assinatura: {signature}")
+print(f"🗒️ Registro salvo em: {log_file}")

@@ -1,0 +1,29 @@
+# 🧩 Projeto SisUno
+**Sistema Único de Gestão Integrada – Officina**
+
+## 🎯 Missão
+Integrar todos os processos do negócio — do orçamento à execução e análise financeira — em um sistema simples, intuitivo e evolutivo.
+
+## 🌐 Visão
+Ser a plataforma de gestão que centraliza o controle técnico, produtivo e financeiro em um só ambiente.
+
+## 💡 Valores
+- Simplicidade
+- Transparência
+- Integração
+- Evolução
+- Humanização
+
+## 🧱 Estrutura Geral
+1. Atendimento e Orçamentação
+2. Produção e Execução
+3. Financeiro Integrado
+4. Relatórios e Inteligência
+
+## 🧭 Filosofia
+O sistema deve ensinar o usuário, não o contrário.
+Interface clara, navegação guiada e respostas visuais em tempo real.
+
+---
+
+📄 **Documento gerado automaticamente — versão 1.0 (base)**

@@ -1,0 +1,69 @@
+🗓️ Conteúdo completo do arquivo cronograma_SisUno.md
+# 🗓️ Cronograma de Desenvolvimento – Projeto SisUno
+
+## 📅 Estrutura Geral
+O cronograma foi elaborado considerando disponibilidade **no período noturno e nos finais de semana**, totalizando cerca de **14 semanas** para a fase inicial (versão v0.1 → v1.0).
+
+---
+
+## 🔹 **Fase 1 – Estrutura e Documentação (Semanas 1 a 2)**
+- Criação da estrutura de pastas e arquivos.
+- Definição da identidade e plano técnico.
+- Documentação base (Etapas 1 a 5).
+- Validação da arquitetura híbrida.
+
+🕒 Resultado: Pacote `SisUno_Base_v0.1.zip` pronto.
+
+---
+
+## 🔹 **Fase 2 – Banco de Dados e Modelagem (Semanas 3 a 4)**
+- Criação do schema SQLite inicial (`schema_sisuno_base.sql`).
+- Configuração de script de teste em Python.
+- Validação de entidades principais:
+  - Pessoas (físicas e jurídicas)
+  - Objetos / Peças / Produtos
+  - Serviços / Tarefas
+- Estruturação de relacionamentos financeiros e produtivos.
+
+🕒 Resultado: Banco local funcional + teste validado.
+
+---
+
+## 🔹 **Fase 3 – Protótipo Funcional (Semanas 5 a 8)**
+- Implementação de telas base (orçamentos, clientes, produção).
+- Integração inicial entre backend (FastAPI) e banco.
+- Interface simples em React local (protótipo).
+- Testes de fluxo de uso e correções.
+
+🕒 Resultado: Versão `SisUno v0.3` navegável.
+
+---
+
+## 🔹 **Fase 4 – Módulos de Produção e Financeiro (Semanas 9 a 12)**
+- Implementação de controle de execução real vs orçado.
+- Inclusão de lançamentos financeiros básicos (receitas/despesas).
+- Relatórios simples em PDF.
+- Sincronização com diretório de dados local.
+
+🕒 Resultado: Versão `SisUno v0.6` operante.
+
+---
+
+## 🔹 **Fase 5 – Relatórios e Finalização da v1.0 (Semanas 13 a 14)**
+- Implementação de relatórios personalizáveis.
+- Documentação técnica e do usuário.
+- Revisão de usabilidade.
+- Geração da versão `SisUno v1.0`.
+
+🕒 Resultado: Sistema funcional pronto para implantação piloto.
+
+---
+
+## 🧩 Observações
+- Revisões semanais podem ser feitas aos sábados ou domingos.  
+- Ajustes de tarefas podem ser definidos conforme o ritmo e feedback.  
+- Cada fase será validada antes da próxima ser iniciada.
+
+---
+
+📄 **Documento gerado automaticamente — versão 1.0 (cronograma base)**

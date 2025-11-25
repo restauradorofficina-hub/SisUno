@@ -1,0 +1,67 @@
+🧩 SisUno v0.8 — Integração de Custos e Deslocamento
+🔹 1. Objetivo Geral
+Unificar os cálculos de custos operacionais, mão de obra e deslocamento no módulo de orçamentos, eliminando a necessidade de uso manual das planilhas externas.
+O sistema passará a calcular automaticamente:
+
+
+custo/hora dos colaboradores,
+
+
+rateio de despesas fixas,
+
+
+custos de deslocamento por quilômetro,
+
+
+custo total do serviço e margem de lucro.
+
+
+
+🔹 2. Fontes de Dados
+OrigemTipoDescriçãoDestino no SistemaPlanilha de Custos GeraisXLSXCustos de pessoal, encargos e despesas fixasBase de cálculo da tabela custos_basePlanilha de DeslocamentoXLSXCusto do veículo por km rodadoTabela custos_veiculoBanco SQLite (sisuno_test.db)DBClientes, prontuários e orçamentosIntegração e geração final dos valores de orçamento
+
+🔹 3. Estrutura Técnica Proposta
+🗂️ Novas Tabelas
+CREATE TABLE custos_base (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao TEXT,
+    tipo TEXT,              -- MDO, FIXO, COMERCIAL, etc.
+    valor REAL,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE custos_veiculo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao TEXT,
+    custo_km REAL,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+🧮 Alterações na Tabela orcamentos
+ALTER TABLE orcamentos ADD COLUMN custo_total REAL DEFAULT 0;
+ALTER TABLE orcamentos ADD COLUMN deslocamento_km REAL DEFAULT 0;
+ALTER TABLE orcamentos ADD COLUMN deslocamento_total REAL DEFAULT 0;
+ALTER TABLE orcamentos ADD COLUMN lucro_previsto REAL DEFAULT 0;
+
+
+🔹 4. Integração de Cálculo
+O módulo gerar_orcamento_pdf.py e test_orcamentos_v06.py serão atualizados para incluir:
+
+
+leitura dos custos da nova tabela (custos_base);
+
+
+leitura automática do custo/km da tabela custos_veiculo;
+
+
+cálculo automático de custo total + deslocamento + lucro;
+
+
+exportação dos dados consolidados no PDF do orçamento.
+
+
+
+🔹 5. Etapas de Desenvolvimento
+EtapaDescriçãoStatus1️⃣Geração das tabelas custos_base e custos_veiculo🔜 A executar2️⃣Importação dos dados das planilhas🔜 A executar3️⃣Atualização do módulo de orçamento⏳ Em planejamento4️⃣Teste e geração automática do PDF completo⏳ Em planejamento5️⃣Documento técnico v0.8 consolidado🔜 Após validação
+
+Posso agora gerar os arquivos SQL iniciais para criar essas novas tabelas (custos_base e custos_veiculo) e preparar o ambiente da v0.8?

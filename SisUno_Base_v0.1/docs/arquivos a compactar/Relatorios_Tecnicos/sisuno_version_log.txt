@@ -1,0 +1,21 @@
+
+=== SISUNO v1.3 ===
+Data: 2025-11-11 21:26:24.305335
+Arquivo: H:\Reserva\Pessoal\Sistema vendas e orçamento\SisUno_Base_v0.1\docs\Relatorios_Tecnicos\Relatorio_Tecnico_SisUno_v1.3.pdf
+Assinatura: 654fe0eeae094635369a67f01e40788c540a48014e9e79bd591b1362da530884
+Descrição: Integração financeira consolidada com pacotes e cartões.
+==================================================
+
+=== Diário de Engenharia v1.3 ===
+Data: 2025-11-11 21:32:01.669857
+Arquivo: H:\Reserva\Pessoal\Sistema vendas e orçamento\SisUno_Base_v0.1\docs\Relatorios_Tecnicos\Diario_Engenharia_SisUno_v1.3.pdf
+Assinatura: dacb269c293f6250a2187b304146570ed4bc2c8a4cc451d2c137be5740966f9c
+Descrição: Registro técnico da versão 1.3 - Consolidação financeira.
+==================================================
+
+=== SISUNO v1.4 ===
+Data: 2025-11-12 08:49:53
+Arquivo: H:\Reserva\Pessoal\Sistema vendas e orçamento\SisUno_Base_v0.1\docs\Relatorios_Tecnicos\Relatorio_Tecnico_SisUno_v1.4.pdf
+Assinatura SHA256: 4d670600e6a4152d0c3ce89ffe5804ec7cdecbec01bfa63ff48f37d959bd24ce
+Descrição: Relatório técnico consolidado - v1.4 (Integração financeira e views de relatórios)
+============================================================
